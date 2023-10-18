@@ -1,0 +1,76 @@
+{
+    "Products": [
+        {
+            "Image": "https://i.ibb.co/VQsRM76/apple-1853259-1920.jpg",
+            "Name": "Apples",
+            "BrandName": "Apples",
+            "Type": "Electronics",
+            "Price": 49.99,
+            "ShortBody": "Apple is a multinational technology company based in Cupertino, California, USA",
+            "Rating": 4.2
+        },
+        {
+            "Image": "https://i.ibb.co/fCCsyTb/facebook-login-1475585-1920.jpg",
+            "Name": "Product 2",
+            "BrandName": "Samsung",
+            "Type": "Fashion",
+            "Price": 29.99,
+            "ShortBody": "Samsung is a multinational conglomerate headquartered in Seoul, South Korea. It is one of the world's largest and most diversified technology companies",
+            "Rating": 4.0
+        },
+        {
+            "Image": "https://i.ibb.co/4KwYPWP/passion-photography-3359955-1920.jpg",
+            "Name": "Product 3",
+            "BrandName": "Sony",
+            "Type": "Home & Garden",
+            "Price": 79.99,
+            "ShortBody": "Sony is a Japanese multinational conglomerate known for its diverse range of consumer electronics, entertainment, and technology productsr.",
+            "Rating": 4.8
+        },
+        {
+            "Image": "https://i.ibb.co/qx77fXf/office-625892-1920.jpg",
+            "Name": "Product 4",
+            "BrandName": "Google",
+            "Type": "Beauty",
+            "Price": 19.99,
+            "ShortBody": "Google is an American multinational technology company known for its vast range of internet-related products and services.",
+            "Rating": 4.5
+        },
+        {
+            "Image": "https://i.ibb.co/rk5yzGj/cpu-4393376-1920.jpg",
+            "Name": "Product 5",
+            "BrandName": "Intel",
+            "Type": "Food & Beverages",
+            "Price": 9.99,
+            "ShortBody": "Intel is an American multinational corporation and one of the world's largest and most well-known semiconductor chip manufacturers.",
+            "Rating": 4.7
+        },
+        {
+            "Image": "https://i.ibb.co/xFqQ7kx/smartphone-5714763-1920.jpg",
+            "Name": "Product 6",
+            "BrandName": "Redmi",
+            "Type": "Sports & Outdoors",
+            "Price": 69.99,
+            "ShortBody": "Redmi is a sub-brand of Xiaomi Corporation, a prominent Chinese electronics company.",
+            "Rating": 4.3
+        },
+        {
+            "Image": "https://i.ibb.co/Jj4X1NM/twitter-1522890-1920.jpg",
+            "Name": "Product 7",
+            "BrandName": "Twitter",
+            "Type": "Sports & Outdoors",
+            "Price": 69.99,
+            "ShortBody": " is a widely recognized social media platform and microblogging service that allows users to share short messages called 'tweets.'",
+            "Rating": 4.3
+        },
+        {
+            "Image": "https://i.ibb.co/FJMYXXP/business-5475659-1920.jpg",
+            "Name": "Product 6",
+            "BrandName": "Facebook",
+            "Type": "Sports & Outdoors",
+            "Price": 69.99,
+            "ShortBody": "Facebook has become a primary means of communication, information sharing, and social connection for billions of people worldwide.",
+            "Rating": 4.3
+        }
+    ]
+}

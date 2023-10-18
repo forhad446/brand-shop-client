@@ -1,6 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import SingleBrand from "./SingleBrand";
 
 export const OurBrand = () => {
+
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        fetch('./product_data.json')
+        .then(res => res.json())
+        .then(data => setProducts(data.Products))
+    },[])
     return (
         <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
             <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -38,7 +48,13 @@ export const OurBrand = () => {
                 </p>
             </div>
             <div className="grid gap-5 row-gap-5 mb-8 lg:grid-cols-4 sm:grid-cols-2">
-                <Link
+                {
+                    products.map((product, rxd) => <SingleBrand 
+                    key={rxd}
+                    product={product}
+                    ></SingleBrand>)
+                }
+                {/* <Link
                     to="/"
                     aria-label="View Item"
                     className="inline-block overflow-hidden duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2"
@@ -216,7 +232,7 @@ export const OurBrand = () => {
                             </div>
                         </div>
                     </div>
-                </Link>
+                </Link> */}
             </div>
             <div className="text-center">
                 <Link
