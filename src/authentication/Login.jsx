@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import logo from './../assets/images/logo.png'
 import { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
+import { BsGoogle } from 'react-icons/Bs';
 
 
 const Login = () => {
@@ -9,7 +10,7 @@ const Login = () => {
     const { signInUser, user } = useContext(AuthContext);
     const [signInError, setSignInError] = useState('');
     console.log(user);
-    
+
     const handleSignIn = event => {
         event.preventDefault();
         const form = event.target;
@@ -24,13 +25,18 @@ const Login = () => {
                 .then(() => setSignInError('Login successfully done'))
                 .catch(error => setSignInError(error.message.slice(10, 50)))
         }
-
+        
 
 
 
     }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            {/* if the user is login then will cannot access this page */}
+            {
+                user?.email &&
+                <Navigate to='/profile' />
+            }
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="mx-auto h-10 w-auto"
@@ -90,6 +96,13 @@ const Login = () => {
                         >
                             Sign in
                         </button>
+                    </div>
+                    <div className="px-6 sm:px-0 max-w-sm">
+                        <button type="button" 
+                        className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                            <BsGoogle />
+                            Sign In with Google
+                            <div></div></button>
                     </div>
                     {/* show the error message */}
                     <div className="text-center">
