@@ -12,13 +12,13 @@ const Navbar = () => {
 
     return (
         <nav className="text-xl font-bold py-3">
-            <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
-                <div className="flex justify-center items-center">
+            <div className="md:flex justify-between items-center max-w-7xl mx-auto px-4">
+                <div className="flex justify-center items-center mb-2">
                     <img className="w-[60px] h-[60px]" src={logo} alt="" />
                     <h2> <span className="italic tracking-widest font-extrabold">Mr.</span> <br /> Computer</h2>
                 </div>
                 {/* nav item for large device  */}
-                <ul className=" justify-center hidden md:flex gap-6">
+                <ul className=" justify-center flex gap-4 md:gap-6 text-lg md:text-xl font-normal md:font-bold">
                     <li>
                         <NavLink
                             to='/'
@@ -96,10 +96,6 @@ const Navbar = () => {
                     }
 
                 </ul>
-                {/* nav item for small device */}
-                <div className="text-3xl block md:hidden">
-
-                </div>
             </div>
 
         </nav>

@@ -4,8 +4,8 @@ import CartDetails from "./CartDetails";
 import { SlArrowRight } from "react-icons/Sl";
 import { useState } from "react";
 
-const MyCart = () => {
 
+const MyCart = () => {
     const productsData = useLoaderData()
     const [products, setProducts] = useState(useLoaderData())
 
