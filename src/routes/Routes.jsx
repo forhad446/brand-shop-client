@@ -9,6 +9,7 @@ import Login from "../authentication/Login";
 import SignUp from "../authentication/SignUp";
 import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
+import MyCardDetails from "../pages/MyCardDetails";
 
 const routes = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const routes = createBrowserRouter([
       {
         path: "/myCart",
         element: <PrivateRoute><MyCart /></PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/myCart')
+      },
+      {
+        path: "/myCardDetails/:id",
+        element: <MyCardDetails></MyCardDetails>,
         loader: () => fetch('http://localhost:5000/myCart')
       },
       {

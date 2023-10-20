@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const CartDetails = ({ item }) => {
@@ -13,11 +14,11 @@ const CartDetails = ({ item }) => {
     return (
         <div>
 
-            <div className="flex items-center max-w-md overflow-hidden bg-white rounded-lg shadow-lg">
-                <div className="w-2/4 bg-cover bg-landscape">
-                    <img src={image} alt="" />
+            <div className="flex flex-col items-center justify-between w-full h-[450px] overflow-hidden bg-white rounded-lg shadow-lg p-5">
+                <div className="w-[330px] bg-cover bg-landscape">
+                    <img className="w-full" src={image} alt={brandName} />
                 </div>
-                <div className="w-2/3 p-4">
+                <div className="w-full ">
                     <h1 className="text-2xl font-bold text-gray-900">
                         {brandName}
                     </h1>
@@ -31,11 +32,14 @@ const CartDetails = ({ item }) => {
                         <h1 className="text-xl font-bold text-gray-700">
                             {price}$
                         </h1>
-                        <button className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
-                            Details
-                        </button>
+                        <Link to={`/myCardDetails/${_id}`}>
+                            <button
+                                className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
+                                Details
+                            </button>
+                        </Link>
                     </div>
-                    <div className="mt-5 flex justify-between">
+                    <div className="mt-5 flex  gap-10 justify-between">
                         <button className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
                             Update
                         </button>

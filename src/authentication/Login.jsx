@@ -7,7 +7,7 @@ import { BsGoogle } from 'react-icons/Bs';
 
 const Login = () => {
 
-    const { signInUser, user } = useContext(AuthContext);
+    const { signInUser, user, googleSignIn } = useContext(AuthContext);
     const [signInError, setSignInError] = useState('');
     console.log(user);
 
@@ -25,10 +25,27 @@ const Login = () => {
                 .then(() => setSignInError('Login successfully done'))
                 .catch(error => setSignInError(error.message.slice(10, 50)))
         }
-        
+
+        const handleGoogleSignIn = () => {
+            googleSignIn()
+        }
 
 
 
+
+    }
+    // google sign in handling
+    const handleGoogleSignIn = () => {
+        if (googleSignIn) {
+            googleSignIn()
+                .then((result) => {
+                    console.log(result.user);
+                })
+                .catch((error) => {
+                    console.log(error.message);
+
+                });
+        }
     }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -98,8 +115,9 @@ const Login = () => {
                         </button>
                     </div>
                     <div className="px-6 sm:px-0 max-w-sm">
-                        <button type="button" 
-                        className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
+                        <button type="button"
+                            onClick={handleGoogleSignIn}
+                            className="text-white w-full  bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center justify-between dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
                             <BsGoogle />
                             Sign In with Google
                             <div></div></button>

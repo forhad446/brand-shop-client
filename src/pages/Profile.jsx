@@ -13,8 +13,9 @@ const Profile = () => {
             <div className="max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg hover:shadow-blue-400">
                 <div className="relative">
                     {
-                        user?.email &&
-                        <img className="w-full h-48 object-cover" src={photoURL} alt="Profile Image" />
+                        user?.photoURL ?
+                        <img className="w-full h-48 object-cover" src={photoURL} alt="Profile Image" /> :
+                        <img className="w-full h-48 object-cover" src="https://i.ibb.co/z5M8kX0/blank-profile-picture-973460-1280.png" alt="Profile Image" />
                     }
 
                 </div>
