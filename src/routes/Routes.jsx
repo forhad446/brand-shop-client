@@ -7,6 +7,8 @@ import SingleBrandDetails from "../components/Our Brand/SingleBrandDetails";
 import MyCart from "../pages/Mycart";
 import Login from "../authentication/Login";
 import SignUp from "../authentication/SignUp";
+import Profile from "../pages/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -20,7 +22,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/add_Product",
-        element: <AddProduct></AddProduct>
+        element: <PrivateRoute><AddProduct /></PrivateRoute>
       },
       {
         path: "/login",
@@ -31,8 +33,12 @@ const routes = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
+        path: "/profile",
+        element: <PrivateRoute><Profile /></PrivateRoute>
+      },
+      {
         path: "/myCart",
-        element: <MyCart></MyCart>,
+        element: <PrivateRoute><MyCart /></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/myCart')
       },
       {
