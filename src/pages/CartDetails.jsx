@@ -1,7 +1,15 @@
 
 
-const CartDetails = ({item}) => {
-    const {_id, brandName, categoryName, image, name, price, rating, shortDescription} = item;
+const CartDetails = ({ item }) => {
+
+    const { _id, brandName, categoryName, image, name, price, rating, shortDescription } = item;
+
+    const handleDelete = (_id) => {
+        console.log(_id);
+        // fetch(`http://localhost:5000/myCart/${_id}`)
+        // .then(res => res.json())
+        // .then(data => console.log(data))
+    }
     return (
         <div>
 
@@ -27,8 +35,20 @@ const CartDetails = ({item}) => {
                             Details
                         </button>
                     </div>
+                    <div className="mt-5 flex justify-between">
+                        <button className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
+                            Update
+                        </button>
+                        <button
+                            onClick={() => handleDelete(_id)}
+                            className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
+                            Delete
+                        </button>
+                    </div>
                 </div>
             </div>
+
+
 
         </div>
     );

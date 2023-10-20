@@ -1,15 +1,16 @@
-// import { getAuth } from "firebase/auth";
-// import { initializeApp } from "firebase/app";
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDMkMwIICIwjoy4pE0pq2rmaGoF8jFEWlA",
-//   authDomain: "entertainment-event-mana-e6563.firebaseapp.com",
-//   projectId: "entertainment-event-mana-e6563",
-//   storageBucket: "entertainment-event-mana-e6563.appspot.com",
-//   messagingSenderId: "731392695672",
-//   appId: "1:731392695672:web:679a379fc6575ede15fc8d"
-// };
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 
-// const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
+const firebaseConfig = {
+  apiKey: "AIzaSyDaObdGUlYRf13aibMbrK94DNHAV6OVkpE",
+  authDomain: "mr-computer-303fc.firebaseapp.com",
+  projectId: "mr-computer-303fc",
+  storageBucket: "mr-computer-303fc.appspot.com",
+  messagingSenderId: "230487085556",
+  appId: "1:230487085556:web:b6c149b2c00baec502a9a1"
+};
+
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);

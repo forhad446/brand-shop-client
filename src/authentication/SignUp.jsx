@@ -1,140 +1,124 @@
-// import { useContext, useState } from "react";
-// import { AuthContext } from "./AuthProvider";
-// import { Link, Navigate } from "react-router-dom";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
+import logo from './../assets/images/logo.png'
+import { useContext, useState } from "react";
+import { AuthContext } from "./AuthProvider";
 
-// const SignUp = () => {
-//     const { createUser, user, googleSignIn } = useContext(AuthContext);
+const SignUp = () => {
 
-//     const [errorSignUp, setErrorSignUp] = useState(null);
+    const { createUser } = useContext(AuthContext);
 
-//     const handleSignUp = e => {
-//         e.preventDefault()
-//         const email = e.target.email.value;
-//         const password = e.target.password.value;
+    const [signUpError, setSignUpError] = useState('');
 
-//         // clear the state value of error
-//         setErrorSignUp('')
+    const handleSignUp = event => {
+        event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
-//         if (password.length < 6) {
-//             setErrorSignUp('password must be 6 more letter');
-//             return;
-//         } else if (!/[A-Z]/.test(password)) {
-//             setErrorSignUp('password must have one more capital letter');
-//             return;
-//         } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
-//             setErrorSignUp('password must have one more special character');
-//             return;
-//         } else {
-//             createUser(email, password)
-//                 .then(() => setErrorSignUp('successfully created your account'))
-//                 .catch(error => setErrorSignUp(error.message))
-//             console.log(errorSignUp);
-//         }
-//     }
-//     const handleGoogleSignIn = () => {
-//         googleSignIn()
-//         .then(result => console.log(result.user))
-//         .catch(error => console.log(error.message))
-//     }
-//     const notify = () => toast(errorSignUp);
-//     return (
-//         <div className="flex justify-center my-8">
-//             {
-//                 user?.email &&
-//                 <Navigate to="/profile" />
-//             }
-//             <div className="w-full max-w-xl xl:px-8 xl:w-5/12">
+        // clear the state info
+        setSignUpError('')
 
-//                 <div className="flex flex-col w-full max-w-md px-4 py-8 bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-//                     <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
-//                         Sign up to your Account
-//                     </div>
-//                     <div className="flex gap-4 item-center">
-//                         <button type="button" className="py-2 px-4 flex justify-center items-center  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-//                             <svg width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-//                                 <path d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z">
-//                                 </path>
-//                             </svg>
-//                             Facebook
-//                         </button>
-//                         <button
-//                             onClick={handleGoogleSignIn}
-//                             type="button" className="py-2 px-4 flex justify-center items-center  bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-//                             <svg width="20" height="20" fill="currentColor" className="mr-2" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-//                                 <path d="M896 786h725q12 67 12 128 0 217-91 387.5t-259.5 266.5-386.5 96q-157 0-299-60.5t-245-163.5-163.5-245-60.5-299 60.5-299 163.5-245 245-163.5 299-60.5q300 0 515 201l-209 201q-123-119-306-119-129 0-238.5 65t-173.5 176.5-64 243.5 64 243.5 173.5 176.5 238.5 65q87 0 160-24t120-60 82-82 51.5-87 22.5-78h-436v-264z">
-//                                 </path>
-//                             </svg>
-//                             Google
-//                         </button>
-//                     </div>
-//                     <div className="mt-8">
-//                         <form onSubmit={handleSignUp}>
-//                             <div className="flex flex-col mb-2">
-//                                 <div className="flex relative ">
-//                                     <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-//                                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-//                                             <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z">
-//                                             </path>
-//                                         </svg>
-//                                     </span>
-//                                     <input type="email"
-//                                         name="email" id="sign-in-email" className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Your email" />
-//                                 </div>
-//                             </div>
-//                             <div className="flex flex-col mb-6">
-//                                 <div className="flex relative ">
-//                                     <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-//                                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-//                                             <path d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z">
-//                                             </path>
-//                                         </svg>
-//                                     </span>
-//                                     <input type="password"
-//                                         name="password" id="sign-in-email" className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Your password" />
-//                                 </div>
-//                             </div>
-//                             <div className="flex items-center mb-6 -mt-4">
-//                                 <div className="flex ml-auto">
-//                                     <a href="#" className="inline-flex text-xs font-thin text-gray-500 sm:text-sm dark:text-gray-100 hover:text-gray-700 dark:hover:text-white">
-//                                         Forgot Your Password?
-//                                     </a>
-//                                 </div>
-//                             </div>
-//                             <div className="flex w-full">
-//                                 <button type="submit" onClick={notify} className="py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-//                                     Sign Up
-//                                 </button>
-//                             </div>
-//                         </form>
-//                         <div className="flex justify-center">
-//                             <ToastContainer
-//                                 position="top-center"
-//                                 autoClose={5000}
-//                                 hideProgressBar={false}
-//                                 newestOnTop={false}
-//                                 closeOnClick
-//                                 rtl={false}
-//                                 pauseOnFocusLoss
-//                                 draggable
-//                                 pauseOnHover
-//                                 theme="light"
-//                             />
-//                         </div>
-//                     </div>
-//                     <div className="flex items-center justify-center mt-6">
-//                         <Link to="/login" className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white">
-//                             <span className="ml-2">
-//                                 Already have an account? Please Login
-//                             </span>
-//                         </Link>
-//                     </div>
-//                 </div>
+        if (password.length < 6) {
+            setSignUpError('Password should be at least 6 characters');
+            console.log(signUpError);
+            return;
+        } else if (!/[A-Z]/.test(password)) {
+            setSignUpError('Password should have a capital letter');
+            console.log(signUpError);
+            return;
+        } else if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(password)) {
+            setSignUpError('Password should have a special character');
+            console.log(signUpError);
+            return;
+        } else {
+            createUser(email, password)
+                .then(() => setSignUpError('Account successfully created'))
+                .catch(error => {
+                    setSignUpError(error.message.slice(10,50))
+                })
+            console.log(signUpError);
+        }
 
-//             </div>
-//         </div>
-//     );
-// };
 
-// export default SignUp;
+    }
+
+    return (
+        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+
+                <img
+                    className="mx-auto h-10 w-auto"
+                    src={logo}
+                />
+                <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                    Sign up new account
+                </h2>
+            </div>
+
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                <form className="space-y-6" onSubmit={handleSignUp}>
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                            Email address
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                autoComplete="email"
+                                required
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+                                Password
+                            </label>
+                            <div className="text-sm">
+                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    Forgot password?
+                                </a>
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <input
+                                id="password"
+                                name="password"
+                                type="password"
+                                autoComplete="current-password"
+                                required
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="submit"
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            Sign up
+                        </button>
+                    </div>
+                    {/* show the error message */}
+                    <div className="text-center">
+                        {signUpError}
+                    </div>
+                </form>
+
+                <p className="mt-10 text-center text-sm text-gray-500">
+                    Already have a member?{' '}
+                    <Link to="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                        Sign in Now
+                    </Link>
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default SignUp;

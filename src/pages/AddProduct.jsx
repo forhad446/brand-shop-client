@@ -3,14 +3,13 @@ import withReactContent from 'sweetalert2-react-content'
 
 const MySwal = withReactContent(Swal)
 const showSwalWithLink = () => {
-     
-MySwal.fire({
-    position: 'top-center',
-    icon: 'success',
-    title: 'product added on database done',
-    showConfirmButton: false,
-    timer: 1500
-  })
+    MySwal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'product added on database done',
+        showConfirmButton: false,
+        timer: 1500
+    })
 }
 
 
@@ -34,6 +33,9 @@ const AddProduct = () => {
             },
             body: JSON.stringify(product),
         })
+            .then(() => {
+                showSwalWithLink()
+            })
 
     }
     return (
@@ -43,28 +45,27 @@ const AddProduct = () => {
                 <form onSubmit={handleAddProduct} className="grid grid-cols-2 gap-3">
 
                     <input type="text" placeholder="Image Link"
-                        name="image" className="input input-bordered input-info w-full max-w-xs" />
+                        name="image" className="input input-bordered input-info w-full max-w-xs" required />
 
                     <input type="text" placeholder="Name"
-                        name="name" className="input input-bordered input-info w-full max-w-xs" />
+                        name="name" className="input input-bordered input-info w-full max-w-xs" required/>
 
                     <input type="text" placeholder="Brand Name"
-                        name="brandName" className="input input-bordered input-info w-full max-w-xs" />
+                        name="brandName" className="input input-bordered input-info w-full max-w-xs" required/>
 
                     <input type="text" placeholder="Category Name"
-                        name="categoryName" className="input input-bordered input-info w-full max-w-xs" />
+                        name="categoryName" className="input input-bordered input-info w-full max-w-xs" required/>
 
                     <input type="text" placeholder="Price"
-                        name="price" className="input input-bordered input-info w-full max-w-xs" />
+                        name="price" className="input input-bordered input-info w-full max-w-xs" required/>
 
                     <input type="text" placeholder="Short description"
-                        name="shortDescription" className="input input-bordered input-info w-full max-w-xs" />
+                        name="shortDescription" className="input input-bordered input-info w-full max-w-xs" required/>
 
                     <input type="text" placeholder="Rating"
-                        name="rating" className="input input-bordered input-info w-full col-span-2" />
+                        name="rating" className="input input-bordered input-info w-full col-span-2" required/>
 
-                    <input type="submit" placeholder="Rating"
-                        onClick={showSwalWithLink}
+                    <input type="submit"
                         value="Add Product" className="input input-bordered input-info w-full col-span-2 bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white" />
 
                 </form>

@@ -3,6 +3,8 @@ import logo from './../../assets/images/logo.png'
 
 const Navbar = () => {
 
+    
+
     return (
         <nav className="text-xl font-bold py-3">
             <div className="flex justify-between items-center max-w-7xl mx-auto px-4">
@@ -46,6 +48,15 @@ const Navbar = () => {
                                 isPending ? "pending" : isActive ? "text-red-400 underline" : ""
                             }
                         >Login
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to='/signUp'
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "text-red-400 underline" : ""
+                            }
+                        >Sign Up
                         </NavLink>
                     </li>
                 </ul>
