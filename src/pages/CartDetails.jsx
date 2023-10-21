@@ -6,10 +6,12 @@ const CartDetails = ({ item }) => {
     const { _id, brandName, categoryName, image, name, price, rating, shortDescription } = item;
 
     const handleDelete = (_id) => {
-        console.log(_id);
-        // fetch(`http://localhost:5000/myCart/${_id}`)
-        // .then(res => res.json())
-        // .then(data => console.log(data))
+        fetch(`http://localhost:5000/myCart/${_id}`, {
+            method: "DELETE",
+        })
+
+        window.location.reload(false);
+
     }
     return (
         <div>
