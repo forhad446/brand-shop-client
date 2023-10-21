@@ -35,6 +35,7 @@ const AddProduct = () => {
         })
             .then(() => {
                 showSwalWithLink()
+                form.reset()
             })
 
     }

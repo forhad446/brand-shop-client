@@ -10,6 +10,7 @@ import SignUp from "../authentication/SignUp";
 import Profile from "../pages/Profile";
 import PrivateRoute from "./PrivateRoute";
 import MyCardDetails from "../pages/MyCardDetails";
+import UpdateUser from "../pages/UpdateUser";
 
 const routes = createBrowserRouter([
   {
@@ -46,6 +47,11 @@ const routes = createBrowserRouter([
         path: "/myCardDetails/:id",
         element: <PrivateRoute><MyCardDetails /></PrivateRoute>,
         loader: () => fetch('http://localhost:5000/myCart')
+      },
+      {
+        path: "/updateUser/:id",
+        loader: () => fetch('http://localhost:5000/myCart'),
+        element: <PrivateRoute><UpdateUser /></PrivateRoute>
       },
       {
         path: "/singleBrandDetails/:BrandName",

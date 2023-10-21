@@ -9,10 +9,9 @@ const CartDetails = ({ item }) => {
         fetch(`http://localhost:5000/myCart/${_id}`, {
             method: "DELETE",
         })
-
         window.location.reload(false);
-
     }
+    // handleUpdate 
     return (
         <div>
 
@@ -42,9 +41,13 @@ const CartDetails = ({ item }) => {
                         </Link>
                     </div>
                     <div className="mt-5 flex  gap-10 justify-between">
-                        <button className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
-                            Update
-                        </button>
+                        <Link to={`/updateUser/${_id}`}>
+                            <button
+
+                                className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
+                                Update
+                            </button>
+                        </Link>
                         <button
                             onClick={() => handleDelete(_id)}
                             className="uppercase bg-green-500 hover:bg-indigo-700 px-5 py-2 rounded-lg text-white">
